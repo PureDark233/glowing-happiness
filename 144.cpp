@@ -9,23 +9,17 @@
  */
 class Solution {
 public:
-    void recursion(TreeNode* root, vector<int>* vec){
-        if(root->left!=NULL){
-            vec->push_back(root->left->val);
-            recursion(root->left,vec);
-        }
-        if(root->right!=NULL){
-            vec->push_back(root->right->val);
-            recursion(root->right,vec);
+    void recursive(TreeNode* root, vector<int>* vec){
+        if(root!=NULL){
+            vec->push_back(root->val);
+            recursive(root->left,vec);
+            recursive(root->right,vec);
         }
     }
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> vec;
         vector<int>* prevec=&vec;
-        if(root==NULL)
-            return vec;
-        vec.push_back(root->val);
-        recursion(root,prevec);
+        recursive(root,prevec);
         return vec;
     }
 };
